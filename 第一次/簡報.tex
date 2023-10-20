@@ -1,0 +1,161 @@
+\input{preamble.tex}
+\author{Si smanglam}
+\title{Pygame 讀書會\\第一週}
+\begin{document}
+\maketitle
+\newpage
+
+\begin{mainpage}{0}{大綱}
+\begin{itemize}
+\item 概覽
+\item pygame window
+\item pygame surface
+\item pygame event
+\item 實戰
+\end{itemize}
+\end{mainpage}
+\newpage
+
+\mytitle{遊戲的組成？}
+\newpage
+
+\begin{tikzpage}{1}{遊戲的組成}
+\begin{tikzpicture}[x = 1mm, y = 1mm]
+\draw[draw = none] (-60, -35) rectangle (60, 35);
+\node (event) at (30, -15) {事件處理};
+\node (art) at (0, -15) {碰撞偵測};
+\node (window) at (-30, -15) {畫面渲染};
+\node (game) at (0, 15) {遊戲};
+
+\draw (0, 5)--(30, 5)--(event.north);
+\draw (0, 5)--(art.north);
+\draw (0, 5)--(-30, 5)--(window.north);
+\draw (game.south)--(0, 5);
+
+\end{tikzpicture}
+\end{tikzpage}
+\newpage
+
+\begin{tikzpage}{1}{遊戲的組成}
+\begin{tikzpicture}[x = 1mm, y = 1mm]
+\draw[draw = none] (-60, -35) rectangle (60, 35);
+\node (event) at (30, -15) {事件處理};
+\node (window) at (-30, -15) {畫面渲染};
+\node (game) at (0, 15) {遊戲};
+
+\draw (0, 5)--(30, 5)--(event.north);
+\draw (0, 5)--(-30, 5)--(window.north);
+\draw (game.south)--(0, 5);
+
+\end{tikzpicture}
+\end{tikzpage}
+\newpage
+
+\begin{mainpage}{1}{程式結構}
+\vfill
+\begin{tcolorbox}
+\begin{minted}[tabsize = 4]{text}
+初始化
+全域變數
+遊戲主迴圈
+	事件處理
+	畫面渲染
+\end{minted}
+\end{tcolorbox}
+\end{mainpage}
+\newpage
+
+\mytitle{Window}
+\newpage
+
+\begin{mainpage}{2}{window}
+\vfill
+\begin{description}
+\item Window:
+\item[含義：] 螢幕上的遊戲視窗，只要是渲染到這上面的東西都會出現在畫面上
+\item[創建：] \verb|pygame.display.set_mode((長, 寬), 額外特性)|
+\item[限制：] 一次只能有一個與顯示器連在一起的 window
+\item[小知識：] 他會 return 一個 surface，所以其實我們可以直接跳到下一章。
+\end{description}
+\end{mainpage}
+\newpage
+
+\begin{mainpage}{3}{surface}
+\vfill
+\begin{itemize}
+\item Surface:
+\begin{itemize}
+\item Pygame 中類似圖片的概念
+\item 是處理渲染最重要的東西
+\item 只要沒有被渲染到主 surface 上都不會被顯示出來
+\item 可以通過多種方式創建
+\end{itemize}
+\end{itemize}
+\end{mainpage}
+\newpage
+
+\begin{mainpage}{3}{surface 與常用功能}
+\vfill
+\begin{itemize}
+\item \verb|pygame.display.update()|
+\item 變數名稱.blit(子 surface, (x, y))
+\item 變數名稱.fill((R, G, B))
+\item 變數名稱.fill(顏色名稱)
+\item pygame.draw.圖形(surface, (x, y))
+\item pygame.image.load(圖片路徑) -> surface
+\end{itemize}
+\end{mainpage}
+\newpage
+
+\begin{mainpage}{4}{Event}
+\vfill
+\begin{itemize}
+\item Event
+\begin{itemize}
+\item 這是 Pygame 中的事件
+\item 一般會以 \verb|pygame.event.get()| 去得到以 List 方式儲存的事件。
+\item 事件可以用 .type 的方式去確認這是哪種事件
+\item 事件有 .dict 與 .type 這兩個屬性去儲存詳細的資料
+\end{itemize}
+\end{itemize}
+\end{mainpage}
+\newpage
+
+\begin{mainpage}{4}{常用的 Event.type}
+\vfill
+\begin{itemize}
+\item KEYDOWN
+\item MOUSEBUTTONDOWN
+\item MOUSEMOTION
+\end{itemize}
+\end{mainpage}
+\newpage
+
+\begin{tikzpage}{4}{Event Loop 範例}
+\begin{tcolorbox}
+\small
+\begin{minted}[]{python}
+for event in pygame.event.get():
+	if event.type == pygame.KEYDOWN:
+		print("鍵盤輸入偵測")
+		if event.key == pygame.K_a
+			print("a 鍵被按下")
+			
+	elif event.type == pygama.MOUSEBUTTONDOWN:
+		print("滑鼠被按下")
+	
+\end{minted}
+\end{tcolorbox}
+\end{tikzpage}
+\newpage
+
+\mysubtitle{\normalsize
+\begin{enumerate}
+\item 創建一個視窗
+\item 將這個視窗渲染上色
+\item 讓使用者點滑鼠視窗會變色
+\item 放一個會跟著使用者鍵盤輸入移動的方塊
+\item 放一個在滑鼠點擊時會移動到滑鼠點擊位置的方塊
+\end{enumerate}
+}
+\end{document}

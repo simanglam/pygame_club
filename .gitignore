@@ -1,0 +1,11 @@
+
+*.log
+*/*.log
+*/*.nav
+*/*.aux
+*/*.out
+*/*.snm
+*/*.toc
+*/_minted-簡報/*
+wt004.ttf
+
